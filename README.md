@@ -1,5 +1,5 @@
 ## About
-Mafiasource is a free text based online Mafia RPG evolved from crimeclub.
+Bloodbullets is a free text based online Mafia RPG evolved from crimeclub.
 Conquer states and cities in the U.S.
 Build an empire with your friends and family and pave your way to the wealthiest Mafia families.
 Will you become the best gangster?
