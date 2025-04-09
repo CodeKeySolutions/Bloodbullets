@@ -1,5 +1,5 @@
 ## Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-## Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+## Copyright © 2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nl
 ##
 ## Permission is hereby granted, free of charge, to any person obtaining a
 ## copy of this software and associated documentation files (the “Software”),
@@ -27,7 +27,7 @@ IndexIgnore */*
 ## Mod rewrites
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    
+
     ## (Re-)direct to index.php
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

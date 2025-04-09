@@ -1,18 +1,18 @@
-# Contributing to Mafiasource
+# Contributing to Bloodbullet
 
 Thanks for your interest. Our goal is to maintain an open-source text-based mafia rpg inspired by crimeclub. Our contributing guidelines have been written with the help of the following [Java example](https://alvinalexander.com/java/jwarehouse/deeplearning4j/CONTRIBUTING.md.shtml)
 
 ## Getting Started
 
-Mafiasource's [open issues are here](https://github.com/Mafiasource/Mafiasource/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the Mafiasource issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or requesting documentation. 
+Bloodbullet's [open issues are here](https://github.com/CodeKeySolutions/Bloodbullets/issues). In time, we'll tag issues that would make a good first pull request for new contributors. An easy way to get started helping the project is to *file an issue*. You can do that on the Bloodbullet issues page by clicking on the green button at the right. Issues can include bugs to fix, features to add, or requesting documentation.
 
-For some tips on contributing to our hobbyist open source project, this [post might be helpful](https://github.com/Mafiasource/Mafiasource/wiki/Writing-future-compatible-code).
+For some tips on contributing to our hobbyist open source project, this [post might be helpful](https://github.com/CodeKeySolutions/Bloodbullets/wiki/Writing-future-compatible-code).
 
 ## Contributions
 
-Mafiasource welcomes contributions from everyone.
+Bloodbullet welcomes contributions from everyone.
 
-Contributions to Mafiasource should be made in the form of GitHub pull requests. Each pull request will
+Contributions to Bloodbullet should be made in the form of GitHub pull requests. Each pull request will
 be reviewed by a core contributor (someone with permission to land patches) and either landed in the
 main tree or given feedback for changes that would be required.
 
@@ -23,7 +23,7 @@ main tree or given feedback for changes that would be required.
   master you may be asked to rebase your changes.
 
 - Commits should be as small as possible, while ensuring that each commit is
-  correct independently (i.e., each commit should run flawless in production). 
+  correct independently (i.e., each commit should run flawless in production).
 
 - Don't put submodule updates in your pull request unless they are to landed
   commits.

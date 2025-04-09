@@ -1,16 +1,18 @@
 {
-    "name": "mafiasource/mafiasource",
+    "name": "CodeKeySolutions/Bloodbullet",
     "type": "project",
-    "description": "Mafiasource is a free text based online Mafia RPG evolved from crimeclub. Conquer states and cities in the U.S. Build an empire with your friends and family and pave your way to the wealthiest Mafia families. Will you become the best gangster?",
+    "description": "Bloodbullets is a free text based online Mafia RPG evolved from crimeclub. Conquer states and cities in the U.S. Build an empire with your friends and family and pave your way to the wealthiest Mafia families. Will you become the best gangster?",
     "keywords": [
         "php",
         "mysql",
         "twig"
     ],
-    "homepage": "https://www.mafiasource.nl",
+    "homepage": "https://www.bloodbullets.com",
     "license": "MIT",
     "authors": [
-        {"name": "Michael Carrein", "email": "michael.carrein@hotmail.com"}
+        {"name": "Michael Carrein", "email": "michael.carrein@hotmail.com"},
+        {"name": "Jordan Daubinet", "email": "info@bloodbullets.com"}
+
     ],
     "require": {
         "doctrine/common": "^3.1",

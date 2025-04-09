@@ -1,7 +1,7 @@
 <?PHP
 
-// Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-// Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+// Mafiasource/Bloodbullets online mafia RPG, this software is inspired by Crimeclub.
+// Copyright © 2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the “Software”),

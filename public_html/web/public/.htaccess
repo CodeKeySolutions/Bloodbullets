@@ -1,8 +1,8 @@
 ## Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-## Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+## Copyright ï¿½2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nll
 ##
 ## Permission is hereby granted, free of charge, to any person obtaining a
-## copy of this software and associated documentation files (the “Software”),
+## copy of this software and associated documentation files (the ï¿½Softwareï¿½),
 ## to deal in the Software without restriction, including without limitation
 ## the rights to use, copy, modify, merge, publish, distribute, sublicense,
 ## and/or sell copies of the Software, and to permit persons to whom the
@@ -11,7 +11,7 @@
 ## The above copyright notice and this permission notice shall be included
 ## in all copies or substantial portions of the Software.
 ##
-## THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS
+## THE SOFTWARE IS PROVIDED ï¿½AS ISï¿½, WITHOUT WARRANTY OF ANY KIND, EXPRESS
 ## OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
 ## MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
 ## NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
@@ -25,14 +25,14 @@
 
 ## Don't list directory contents
 IndexIgnore *
- 
+
 ## Only allow access to this directory if they are coming from your the following domains: #Uncomment if needed
 #RewriteEngine On
 #RewriteCond %{HTTP_HOST} !^(127\.0\.0\.0|localhost) [NC]
 #RewriteCond %{HTTP_REFERER} !^https?://(.+\.)?mafiasource\.nl/ [NC]
 #RewriteCond %{HTTP_REFERER} !^https?://(.+\.)?static\.mafiasource\.nl/ [NC]
 #RewriteRule .* https://www.mafiasource.nl/ [L]
- 
+
 ## Secure php.ini and .htaccess
 RewriteRule ^(php\.ini|\.htaccess) - [NC,F]
 
@@ -48,14 +48,14 @@ RewriteRule .* - [F]
 #RewriteCond %{REQUEST_FILENAME} \.(jpe?g?|png|gif|ico|pdf|flv|swf|gz)$ [NC]
 #RewriteCond %{HTTP_REFERER} !^https?://([^.]+\.)?mafiasource\.nl/ [NC]
 #RewriteRule \.(jpe?g?|png|gif|ico|pdf|flv|swf|gz)$ - [NC,F]
- 
+
 ## Only the following file extensions are allowed from here on..
 Require all denied
 <FilesMatch "\.([Jj][Pp][Ee]?[Gg]?|[Pp][Nn][Gg]|[Gg][Ii][Ff]|[Ww][Ee][Bb][Pp]|[Cc][Ss][Ss]|[Jj][Ss]|[Pp][Hh][Pp]|[Gg][Zz]|[Pp][Dd][Ff]|[Ww][Oo][Ff][Ff]|[Ww][Oo][Ff][Ff]2|[Mm][Aa][Pp]|[Tt][Tt][Ff])$">
     Require all granted
 </FilesMatch>
- 
+
 ## Only allow GET, POST, OPTIONS HTTP methods
-<LimitExcept GET POST OPTIONS> 
+<LimitExcept GET POST OPTIONS>
     Require all denied
 </LimitExcept>

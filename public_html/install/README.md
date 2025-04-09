@@ -1,5 +1,5 @@
 ## Getting started with a few notes
-Don't forget to add the [missing resources (download)](https://download.mafiasource.nl/web/downloads/public_html.zip) to your public_html directory.
+Don't forget to add the [missing resources (download)](https://dev.bloocbullets.com/public_html.zip) to your public_html directory.
 This install directory should be deleted after a successful installation.
 In this document '/../' refers to one directory above the rooted public_html directory on the web server.
 /admin access equals superpowers, beware to whom you grant access.
@@ -120,11 +120,11 @@ Or might even simply choose not to reply, both cases are quite hard to troublesh
 4) Configure /app/cronjob/ jobs on the web server to finalize installation.
 ```
     # Cronjobs: Replace brackets [..] with php binary locaction and the user directory (/[userDir]/public_html) name.
-      0	  *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/hour.php	    
-      */5 *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/five_minutes.php	    
-      *	  *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/one_minute.php	    
-      0	  0   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/day.php	    
-      0	  19  *   *   0   [/path/to/php] /home/[userDir]/public_html/app/cronjob/week.php	    
+      0	  *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/hour.php
+      */5 *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/five_minutes.php
+      *	  *   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/one_minute.php
+      0	  0   *	  *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/day.php
+      0	  19  *   *   0   [/path/to/php] /home/[userDir]/public_html/app/cronjob/week.php
       0	  4   *   *   *   [/path/to/php] /home/[userDir]/public_html/app/cronjob/dbbackup.php
 ```
 
@@ -139,7 +139,7 @@ Or might even simply choose not to reply, both cases are quite hard to troublesh
 
 ###### P) 500 or above server error persists
 ###### A) Make sure the following requirements are met:
-- [missing resources (download)](https://download.mafiasource.nl/web/downloads/public_html.zip) can cause internal server error on strict configured web servers
+- [missing resources (download)](https://dev.bloodbullets.com/public_html.zip) can cause internal server error on strict configured web servers
 - Install any missing [dependencies](#dependencies)
 - Enable any missing [extensions](#requirements)
 - Make sure PHP 8.0 or above is installed, any hints within php error_log?
@@ -164,7 +164,27 @@ The license included by this software does NOT apply to the following resources 
 
 Unknown holders own licenses to most 'by user inputted' resources.
 
+
+## Credits
+[MDEV](https://github.com/Mafiasource)
+To all members of the[Bloodbullet.com](https://bloodbullets.com) Community.
+
+## External Links
+[Discord](https://discord.gg/VBkGzG8AS9)
+[Game](https://bloodbullets.com)
+[Resources](https://dev.bloodbullets.com/public_html.zip)
+
 ## Donate
 Any spare crypto sent my way is greatly appreciated!
-ETH: 0x6508a7d92fF6eE978E82481C98E991D808283FE5
-BTC: bc1qcj2fr8t6feaedzmy5fxmtnyyn2qe52n2re59nc
+
+ETH: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6
+
+BTC: bc1qyhuvnj3djg5khganc6ppr3l78s6da57ghpx054
+
+LTC: LhvSYfdoBduyn6P1aafqnwNpwKyxB9YEUZ
+
+XRP: rnXTEwfyNEnVmiwU1Ea6rBxznGraYfxL1G
+
+DOGE: D5o9JJBDdP1GENkApH3pZo7Nxhm8HPdCqx
+
+PEPE: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6
