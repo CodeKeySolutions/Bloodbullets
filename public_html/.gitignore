@@ -7,7 +7,6 @@
 /userSalts/*
 /public_html/app/cache/sessions/*
 !/app/cronjob/backup/1.txt
-/App/config/config.php
 /.htaccess
 # Vendor files
 /vendor/*
