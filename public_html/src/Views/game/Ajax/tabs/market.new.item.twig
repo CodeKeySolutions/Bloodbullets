@@ -1,0 +1,56 @@
+{% extends "/app/Resources/Views/modal.twig" %}
+
+{% import "app/Resources/Views/macros/alert.macro.twig" as alert %}
+
+{% block size %}modal-lg{% endblock size %}
+
+{% block title %}
+    <h4 class="modal-title">{{ category }} {{ langs.MARKET|lower }}</h4>
+{% endblock title %}
+
+{% block content %}
+    {{ alert.build('Info', 'alert-info', 'help', langs.SUPPLY_AND_DEMAND_INFO) }}
+    <div id="ajaxLoader"></div>
+    <div id="newMarketItemResponse"></div>
+    <form id="newMarketItem" class="ajaxForm" action="{{ routing.getAjaxRouteByRouteName('new-market-item') }}" method="POST" data-response="#newMarketItemResponse">
+        <input type="hidden" name="category" value="{{ category }}"/><br />
+        <div class="row cols cf">
+            <div class="c-20 no-border">
+                {{ category }}
+            </div>
+            <div class="c-80 no-border">
+                <input type="number" name="amount" placeholder="100" value="" max="10000"/>
+            </div>
+        </div><br />
+        <div class="row cols cf">
+            <div class="c-20 no-border">
+                {{ langs.SELL }}/{{ langs.BUY }}
+            </div>
+            <div class="c-80 no-border">
+                <select name="requested">
+                    <option value="0">{% if lang == 'en' %}{{ langs.SELL }} {{ category|lower }}{% else %}{{ category }} {{ langs.SELL|lower }}{% endif %}</option>
+                    <option value="1">{% if lang == 'en' %}{{ langs.BUY }} {{ category|lower }}{% else %}{{ category }} {{ langs.BUY|lower }}{% endif %}</option>
+                </select>
+            </div>
+        </div><br />
+        <div class="row cols cf">
+            <div class="c-20 no-border">
+                {{ langs.PRICE }}
+            </div>
+            <div class="c-80 no-border">
+                <input type="number" name="price" placeholder="25000000" value="" max="9999999999"/>
+            </div>
+        </div><br />
+        <div class="row cols cf">
+            <div class="c-20 no-border">
+                {{ langs.ANONYMOUS }}
+            </div>
+            <div class="c-80 no-border">
+                <input type="checkbox" name="anonymous" value="1"/>
+            </div>
+        </div>
+        <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+        <br class="clear"/>
+        <input type="submit" name="submit-reply" class="button" value="{{ langs.PLACE_OR_REQUEST_X_ON_MARKET }}"/>
+    </form>
+{% endblock content %}

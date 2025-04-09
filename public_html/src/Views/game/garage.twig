@@ -1,0 +1,74 @@
+{% extends "/app/Resources/Views/gamebase.twig" %}
+
+{% block stylesheets %}
+<style type="text/css">
+div.table-responsive.garage-shop-info > table {margin: 0;}
+div.vehicle-info-container {margin:0 auto;max-width:500px;}
+@media (max-width: 688px) {section#ccontainer section#content .row > .c-33, .row > .c-33 {width:100%;clear:both;}}
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="top">
+    Garage
+</div>
+<div class="tab-container cf">
+    <div class="tab {% if tab == 'vehicles' %}tab_on{% endif %} t-50">
+        <a href="{{ routing.getRouteByRouteName('garage') }}">
+            <img src="{{ staticRoot }}/foto/web/public/images/icons/car.png" class="icon" alt=""/> {{ langs.VEHICLES }}
+        </a>
+    </div>
+    <div class="tab {% if tab == 'shop' %}tab_on{% endif %} t-50">
+        <a href="{{ routing.getRouteByRouteName('garage-shop') }}">
+            <img src="{{ staticRoot }}/foto/web/public/images/icons/car_add.png" class="icon" alt=""/> {{ langs.SHOP }}
+        </a>
+    </div>
+</div>
+<div class="content-container">
+    <div class="c-row cf">
+        <div class="inner-c-container">
+        <div id="buyPossessResponse"></div>
+            <div class="center">
+                {% include "/src/Views/game/.inc.possess.twig" with {article: langs.DEZETHIS} %}
+            </div>
+        </div>
+    </div>
+    {% include "/src/Views/game/tabs/garage/"~tab~".twig" %}
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ staticRoot }}/web/public/js/ajax-form.js"></script>
+<script type="text/javascript">
+$(document).on("change", ".garage-selection", function(e){
+    $(".garage-selection").closest("form").submit();
+});
+$(document).ready(function(){
+    $("a.action").click(function(e){
+        $('#ajaxLoader').show();
+        var vid = $(this).attr('data-id');
+        var action = $(this).attr('data-action');
+        var securityToken = $("input[name=security-token]").val();
+        var postData = {action:action,id:vid,securityToken:securityToken};
+        var formURL = '/game/garage/interact-vehicle';
+        var method = "POST";
+        var responseField = "#vehicleActionResponse_"+vid;
+        $.ajax(
+        {
+        	url : formURL,
+        	type: method,
+        	data : postData,
+        	success:function(data, textStatus, jqXHR) 
+        	{
+     	      if($("#ajaxLoader" ).length)
+              {
+                $('#ajaxLoader').hide();
+              }
+        	  $(responseField).html(data);
+        	}
+        });
+        e.preventDefault();
+    });
+});
+</script>
+{% endblock javascripts %}

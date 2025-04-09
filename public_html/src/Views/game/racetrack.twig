@@ -1,0 +1,55 @@
+{% extends "/app/Resources/Views/gamebase.twig" %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        input.racetrack-field {display:inline-block;max-width:60px;margin:0;}
+        #playRacetrackResponse .alert {margin-bottom: 0;}
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div style="max-width: 520px;margin: 0 auto">
+    <div class="top">
+        Racetrack
+    </div>
+    <div class="content-container cf">
+        <p class="center"><img src="{{ staticRoot }}/foto/web/public/images/racetrack.jpg" alt="Racetrack" /></p>
+        <div id="playRacetrackResponse"></div>
+        <form class="ajaxForm center" method="POST" action="{{ routing.getAjaxRouteByRouteName('play-racetrack') }}" data-response="#playRacetrackResponse">
+            <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+            <div class="table-responsive">
+                <table class="table table-sm table-dark table-bordered">
+                    <thead>
+                        <tr>
+                            {% for k, c in colors %}
+                                <th scope="col" class="center">
+                                    <strong><input id="horse-{{ k}}" type="radio" name="horse" class="form-check-input middle" value="{{ k }}"{% if loop.first %} checked="checked"{% endif %}/></strong>
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% for k, c in colors %}
+                                <td style="background: {{ c }};{% if k in blackFonts|keys %}color: black;{% endif %}" class="center"><label class="form-check-label" for="horse-{{ k}}"><small>1:{{ loop.index + 1 }}</small></label></td>
+                            {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br class="clear"/>
+            {{ langs.STAKE }}:&nbsp;<input type="number" class="racetrack-field" name="stake" placeholder="{{ langs.STAKE }}"/>&nbsp;<input type='submit' name='play-racetrack' value='{{ langs.PLAY }}' />
+        </form>
+        <p class="center">{{ langs.RACETRACK_INFO|raw }}</p>
+        <div id="buyPossessResponse"></div>
+        <div class="center">
+            {% include "/src/Views/game/.inc.possess.twig" with {article: langs.DEZETHIS} %}
+            <br class="clear"/>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ staticRoot }}/web/public/js/ajax-form.js"></script>
+{% endblock javascripts %}

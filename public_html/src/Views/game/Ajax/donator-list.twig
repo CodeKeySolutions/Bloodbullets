@@ -1,0 +1,13 @@
+
+    {% if response %}
+        {% include "app/Resources/Views/macros/alerts.game.responses.twig" %}
+    {% endif %}
+    {% for donator in donatorList %}
+        <a href="/game/profile/{{ donator.getDonator }}">
+            <strong class="{{ donator.getColorCode }}">{{ donator.getDonator }}</strong>
+            {% if donator.getColorCode == 'gold-member' %}
+                &hairsp;<img src="{{ staticRoot }}/foto/web/public/images/icons/goldmember_icon.png" alt="" title="Gold Member"/>
+            {% endif %}
+        </a>,&nbsp;
+    {% endfor %}
+    ...

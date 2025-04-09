@@ -1,0 +1,46 @@
+{% extends "/app/Resources/Views/base.twig" %}
+
+{% block stylesheets %}
+{% for s in screenshots %}
+    <link rel="preload" media="(min-width: 766px)" href="{{ staticRoot }}/foto/1802x860/1/web/public/images/screenshots/{{ lang }}/{{ s.screen }}.png" as="image" />
+    <link rel="preload" href="{{ staticRoot }}/foto/web/public/images/screenshots/{{ lang }}/{{ s.screen }}.mobile.png" as="image" />
+{% endfor %}
+<style type="text/css">
+    section#content {padding-bottom:0;}
+    .carousel.slide {margin-top:-1.05rem; max-height: 869px;overflow:hidden;}
+    h1 {position: absolute;top: -10em;}
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+    <h1>{{ PAGE_TITLE|replace({' - Bloodbullet': ''}) }}</h1>
+
+    <div id="carouselIndicators" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        {% for s in screenshots %}
+            <button type="button" data-bs-target="#carouselIndicators" data-bs-slide-to="{{ loop.index0 }}"{% if loop.first %} class="active"{% endif %}></button>
+        {% endfor %}
+      </ol>
+      <div class="carousel-inner">
+        {% for s in screenshots %}
+            <div id="carousel_{{ loop.index }}" class="carousel-item{% if loop.first %} active{% endif %}">
+                <picture>
+                    <source media="(min-width: 766px)" srcset="{{ staticRoot }}/foto/1802x860/1/web/public/images/screenshots/{{ lang }}/{{ s.screen }}.png" />
+                    <img class="d-block w-100" src="{{ staticRoot }}/foto/web/public/images/screenshots/{{ lang }}/{{ s.screen }}.mobile.png" alt="{{ s.name }}" />
+                </picture>
+            </div>
+        {% endfor %}
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+    <div class="push"></div>
+{% endblock content %}
+
+{% block privacyNotice %}{% endblock privacyNotice %}

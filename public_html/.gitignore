@@ -1,0 +1,39 @@
+# App cache & backups
+/app/cache/TwigCompilation/*
+/app/cronjob/backup/*
+/app/Resources/MembersSalts/*
+/app/Resources/userCrypts/*
+/masterCrypts/*
+/userSalts/*
+/public_html/app/cache/sessions/*
+!/app/cronjob/backup/1.txt
+/App/config/config.php
+/.htaccess
+# Vendor files
+/vendor/*
+!vendor/.htaccess
+!vendor/SimpleImage.php
+!vendor/SessionManager.php
+
+# Web assets (Can de downloaded from mafiasource.nl)
+/web/downloads/*
+/web/vendor/*
+/web/public/cache/*
+
+/web/composer.lock
+/web/public/images/*
+!web/public/images/.htaccess
+!web/public/images/captcha/
+!web/public/images/users/.htaccess
+!web/public/images/families/.htaccess
+
+# Root files
+/.ftpquota
+/composer.phar
+/composer.lock
+
+
+iv.txt
+emails.txt
+key.txt
+/app/Resources/userSalts/*.txt

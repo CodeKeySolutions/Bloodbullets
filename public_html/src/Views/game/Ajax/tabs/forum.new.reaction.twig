@@ -1,0 +1,35 @@
+{% extends "/app/Resources/Views/modal.twig" %}
+
+{% block title %}
+    <h4 class="modal-title">{{ langs.NEW_REACTION }}</h4>
+{% endblock title %}
+
+{% block content %}
+    <div id="ajaxLoader"></div>
+    <div id="forumNewReplyResponse"></div>
+    <form id="forum-reply" class="ajaxForm" action="{{ routing.getAjaxRouteByRouteName('forum-reply') }}" method="POST" data-response="#forumNewReplyResponse">
+        <input type="hidden" name="topicID" value="{{ topicID }}"/>
+        <textarea id="replyField" name="reply-message" rows="10" cols="80"></textarea>
+        <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+        <br class="clear"/>
+        <input type="submit" name="submit-reply" class="execbutton small" value="{{ langs.PLACE_REACTION }}"/>
+    </form>
+{% endblock content %}
+
+{% block js %}
+    $(document).ready(function(){
+        if($('#modal').hasClass('in') == false) {
+            $("#triggerModal").click();
+            $("#triggerModal").remove();
+            CKEDITOR.replace('replyField', {
+                autoGrow_maxHeight: 650,
+                removePlugins: 'resize',
+                enterMode: CKEDITOR.ENTER_BR,
+                shiftEnterMode: CKEDITOR.ENTER_P
+            });
+        }
+        $('#modal').on('hidden.bs.modal', function () {
+            $("#openTab").empty();
+        });
+    });
+{% endblock js %}

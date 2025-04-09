@@ -1,0 +1,65 @@
+{% extends "base.twig" %}
+
+{% block jsincludes %}
+  <script defer src="https://js.tebex.io/v/1.js"></script>
+  <script>
+   let ident = null;
+
+function launch() {
+    const config = {
+        ident: ident,
+        theme: document.getElementById("popup-theme")?.value,
+        colors: [],
+        endpoint: __ENDPOINT__,
+    };
+
+    Array.prototype.forEach.call(
+        document.getElementsByClassName("color-selections"),
+        function (el) {
+            if (!el.value) return;
+            config.colors.push({
+                name: el.name,
+                color: el.value,
+            });
+        }
+    );
+
+    Tebex.checkout.init(config);
+    Tebex.checkout.launch();
+}
+
+addEventListener("load", function (e) {
+    fetch("/tebex/token")
+        .then((response) => response.json())
+        .then((response) => {
+            ident = response.ident;
+            document
+                .getElementById("loading-container")
+                ?.classList.remove("hide");
+            document.getElementById("loading-spinner")?.classList.add("hide");
+        });
+
+    Tebex.checkout.on("open", () => {
+        console.log("checkout opened");
+    });
+
+    Tebex.checkout.on("close", () => {
+        console.log("checkout closed");
+    });
+
+    Tebex.checkout.on("payment:complete", (event) => {
+        console.log("payment completed", event);
+    });
+
+    Tebex.checkout.on("payment:error", (event) => {
+        console.log("payment errored", event);
+    });
+});
+
+window.launch = launch;
+</script>
+{% endblock jsincludes %}
+
+NL8VExc6vqksoe6yIqF5GsPjOI4uzbHh
+mux7-8f6af0a460634a4ba8738b75dc436243829f9027
+1066507

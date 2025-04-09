@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>{{ docRoot }}/</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/register</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/login</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/forum</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/screenshots</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/download-app</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/link-partners</loc>
+        <changefreq>hourly</changefreq>
+        <priority>0.80</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/terms-and-conditions</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.00</priority>
+    </url>
+    <url>
+        <loc>{{ docRoot }}/privacy-policy</loc>
+        <changefreq>hourly</changefreq>
+        <priority>1.00</priority>
+    </url>
+</urlset>

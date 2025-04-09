@@ -1,0 +1,39 @@
+{% extends "/app/Resources/Views/gamebase.twig" %}
+
+{% import "app/Resources/Views/macros/alert.macro.twig" as alert %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        input.blackjack-field {display:inline-block;max-width:60px;margin:0;}
+        #playBlackjackResponse .alert {margin-bottom: 0;}
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div style="max-width: 520px;margin: 0 auto">
+    <div class="top">
+        Blackjack
+    </div>
+    <div class="content-container cf">
+        <p class="center"><img src="{{ staticRoot }}/foto/web/public/images/blackjack.jpg" alt="Blackjack" /></p>
+        <div id="playBlackjackResponse">
+            <form class="ajaxForm center" method="POST" action="{{ routing.getAjaxRouteByRouteName('play-blackjack') }}" data-response="#playBlackjackResponse">
+                <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+                {{ langs.STAKE }}:&nbsp;<input type="number" class="blackjack-field" name="stake" placeholder="{{ langs.STAKE }}"/>&nbsp;<input type='submit' name='play-blackjack' value='{{ langs.PLAY }}' />
+            </form>
+        </div>
+        <p class="center">{{ langs.BLACKJACK_INFO|raw }}</p>
+        <div id="buyPossessResponse"></div>
+        <div class="center">
+            {% include "/src/Views/game/.inc.possess.twig" with {article: langs.DEZETHIS} %}
+            <br class="clear"/>
+        </div>
+    </div>
+    <br class="clear"/>
+    {{ alert.build('Info', 'alert-info', 'help', langs.FRESH_DECK_INFO) }}
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ staticRoot }}/web/public/js/ajax-form.js"></script>
+{% endblock javascripts %}

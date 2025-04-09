@@ -1,0 +1,14 @@
+{% import "app/Resources/Views/macros/alert.macro.twig" as alert %}
+
+{% extends "/app/Resources/Views/base.twig" %}
+ 
+{% block content %}
+    <div class="container">
+        {% include "app/Resources/Views/macros/alerts.base.top.twig" %}
+        <div class="row">
+            <div class="col-lg-12">
+                {{ downloadApp|raw }}
+            </div>
+        </div>
+    </div>
+{% endblock content %}

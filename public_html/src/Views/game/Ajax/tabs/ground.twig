@@ -1,0 +1,19 @@
+{% extends "/app/Resources/Views/modal.twig" %}
+
+{% block size %}modal-lg{% endblock size %}
+
+{% block css %}
+    button.execbutton.small, input.execbutton.small, section#content .execbutton.small {font-size:10px;padding:3px;}
+    hr {width:100%;height:1px;background:#e1e1e1;margin:1em 0;border:none;}
+    button.execbutton.green:active, input.execbutton.green:active, section#content .execbutton.green:active {margin-top: 6px;margin-bottom: 5px;}
+{% endblock css %}
+
+{% block title %}
+    <h4 class="modal-title">{{ langs.GROUND }} #{{ ground.getGID }} in {{ ground.getState }}</h4>
+{% endblock title %}
+
+{% block content %}
+    <div id="interactGroundAreaResponse">
+        {% include "src/Views/game/Ajax/ground.area.twig" %}
+    </div>
+{% endblock content %}

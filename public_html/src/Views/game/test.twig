@@ -1,0 +1,17 @@
+{% extends 'app/Resources/Views/gamebase.twig' %}
+
+{% block content %}
+    <div class="top">Guards</div>
+    <div class="content-container">
+    <ul class="pagination">
+      {% for g in guards %}
+        <li>
+        {{g.getName}} - Attack {{g.getAttack}} - Defence {{g.getDefense}}
+        <input type='hidden' value='{{g.getId}}' />
+        <button class="execbutton active" >Hire guard</button></li>
+      {% else %}
+        <li>No player guards found</li>
+      {% endfor %}
+    </ul>
+    </div>
+{% endblock content %}

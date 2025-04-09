@@ -1,0 +1,24 @@
+{% extends "/app/Resources/Views/gamebase.twig" %}
+
+{% import "app/Resources/Views/macros/alert.macro.twig" as alert %}
+
+{% block content %}
+<div class="top">
+    {{ langs.FAMILY }} {{ langs.CRIMES }}
+</div>
+<div class="content-container cf">
+    {% if not hasGarage %}
+        <div class="row rowMsg">
+            {{ alert.build('Warning', 'alert-warning', 'bell', langs.NO_FAMILY_GARAGE_WITH_LINK) }}
+        </div>
+    {% else %}
+        <div id="interactFamilyCrimesResponse">
+            {% include "src/Views/game/Ajax/family.crimes.twig" %}
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ staticRoot }}/web/public/js/ajax-form.js"></script>
+{% endblock javascripts %}

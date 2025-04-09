@@ -1,0 +1,200 @@
+<div class="row center">
+    {% set crIcon = '<img src="' ~ staticRoot ~'/foto/web/public/images/icons/star.png" class="icon" alt="Credits"/>' %}
+    {% set creditsInfo = routing.replaceMessagePart(userData.getCredits|valueFormat, langs.CREDITS_INFO, '/{credits}/') %}
+    {{ crIcon|raw }} {{ creditsInfo|raw }} <a href="javascript:void(0);" class="ajaxTab" data-tab="donate"><i class='donator'>{{ langs.DONATE }}!</i></a>
+</div>
+{% if response %}
+    <div class="rowMsg">
+        {% include "app/Resources/Views/macros/alerts.game.responses.twig" %}
+    </div>
+{% endif %}
+<form class="ajaxForm" action="{{ routing.getAjaxRouteByRouteName('interact-donation-shop') }}" method="POST" data-response="#interactShopResponse">
+    <div class="row cols cf">
+        <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+        <div class="c-50 column center">
+            {% if userData.getDonatorID == 0 %}
+            <figure>
+              <img src="{{ staticRoot }}/foto/web/public/images/donator/{% if lang == 'nl' %}donateur{% else %}donator{% endif %}.png" alt="Donator" width="249" height="76"/>
+              <figcaption>
+                {{ crIcon|raw }} 100 <input type="submit" name="donator" value="{{ langs.BUY }}"/>
+              </figcaption>
+            </figure>
+            {% endif %}
+            {% if userData.getDonatorID < 5 %}
+            <figure>
+              <img src="{{ staticRoot }}/foto/web/public/images/donator/vip.png" alt="VIP" width="249" height="76"/>
+              <figcaption>
+                {% set creditsVIP = 500 - (userData.getDonatorID * 100) %}
+                {{ crIcon|raw }} {{ creditsVIP|valueFormat }} <input type="submit" name="vip" value="{{ langs.BUY }}"/>
+              </figcaption>
+            </figure>
+            {% endif %}
+            <figure>
+              <img src="{{ staticRoot }}/foto/web/public/images/donator/gold-member.png" alt="Gold Member" width="249" height="76"/>
+              <figcaption>
+                {% if userData.getDonatorID == 10 %}
+                    <img src="{{ staticRoot }}/foto/web/public/images/icons/tick.png" class="icon" alt="{{ langs.IN_POSSESSION }}"/> {{ langs.ACHIEVED_HIGHEST_STATUS }}
+                {% elseif userData.getDonatorID == 0 %} {# Korting #}
+                    <small>{{ langs.PROFIT_DISCOUNT }}</small><br />
+                    {{ crIcon|raw }}&nbsp;<s>1,500</s> 1,250
+                {% else %}
+                    {% set creditsGoldMember = 1500 - (userData.getDonatorID * 100) %}
+                    {{ crIcon|raw }} {{ creditsGoldMember|valueFormat }}
+                {% endif %}
+                {% if userData.getDonatorID < 10 %}
+                    &nbsp;<input type="submit" name="gold-member" value="{{ langs.BUY }}"/>
+                {% endif %}
+              </figcaption>
+            </figure>
+            {#
+            <figure>
+              <img src="{{ staticRoot }}/foto/web/public/images/donator/luckybox.png" alt="Luckybox" width="249" height="76"/>
+              <figcaption>
+                {% if userData.getId %} { # Korting # }
+                    <small><s>15</s> {{ luckyboxAmnt }} {{ langs.BOXES }}</small><br />
+                    {{ crIcon|raw }}&nbsp;<s>300</s> {{ luckyboxCr }}
+                {% else %}
+                    <small>15 {{ langs.BOXES }}</small><br />
+                    {{ crIcon|raw }}&nbsp; 300
+                {% endif %}
+                    &nbsp;<input type="submit" name="luckybox" value="{{ langs.BUY }}"/>
+              </figcaption>
+            </figure>
+            #}
+        </div>
+        <div class="c-50 column center">
+            <figure>
+              <img src="{{ staticRoot }}/foto/web/public/images/donator/vip-{{ langs.FAMILY|lower }}.png" alt="VIP {{ langs.FAMILY }}" width="249" height="76"/>
+              <figcaption>
+                {% if familyData.getVip %}
+                    <img src="{{ staticRoot }}/foto/web/public/images/icons/tick.png" class="icon" alt="{{ langs.IN_POSSESSION }}"/> {{ langs.FAMILY_IS_VIP }}
+                {% else %}
+                    {{ crIcon|raw }} 500 <input type="submit" name="vip-family" value="{{ langs.BUY }}"/>
+                {% endif %}
+              </figcaption>
+            </figure>
+        </div>
+    </div>
+    <div class="row center">
+        {{ langs.DONATION_SHOP_INFO|raw }}
+    </div>
+    <div class="row cols cf">
+        <div class="c-100 column">
+            <div style="max-width: 520px;margin: 0 auto;">
+                <div class="table-reponsive">
+                    <table class="table table-sm table-dark table-bordered">
+                      <thead>
+                        <tr>
+                          <th scope="col" class="center">Item</th>
+                          <th scope="col" class="center">Credits</th>
+                          <th scope="col" class="center">{{ langs.BUY }}</th>
+                          <th scope="col" class="center">demo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{{ luckyboxAmnt }}x  Luckybox</td>
+                          <td class="center">{{ crIcon|raw }} {{ luckyboxCr }}</td>
+                          <td class="center"><input type="submit" name="luckybox" value="{{ langs.BUY }}" /></td>
+                        </tr>
+                        {% if userData.getCHalvingTimes < date().timestamp %}
+                            <tr>
+                              <td>{{ langs.HALVING_TIMES }}</td>
+                              <td class="center">{{ crIcon|raw }} 63</td>
+                              <td class="center"><input type="submit" name="halving-times" value="{{ langs.BUY }}" /></td>
+                            </tr>
+                        {% endif %}
+                        {% if userData.getCBribingPolice < date().timestamp %}
+                            <tr>
+                              <td>{{ langs.BRIBING_BORDER_PATROL }}</td>
+                              <td class="center">{{ crIcon|raw }} {% if userData.getCharType == 6 %}28{% else %}38{% endif %}</td>
+                              <td class="center"><input type="submit" name="bribing-police" value="{{ langs.BUY }}"/></td>
+                            </tr>
+                        {% endif %}
+                        {% if shopData.ground < 5 %}
+                            <tr>
+                              <td>{{ langs.GROUND }}</td>
+                              <td class="center">{{ crIcon|raw }} 100</td>
+                              <td class="center"><input type="submit" name="ground" value="{{ langs.BUY }}"/></td>
+                            </tr>
+                        {% endif %}
+                        {% if shopData.smugglingCapacity < 20 %}
+                            <tr>
+                              <td>{{ langs.SMUGGLING_CAPACITY }}</td>
+                              <td class="center">{{ crIcon|raw }} 100</td>
+                              <td class="center"><input type="submit" name="smuggling-capacity" value="{{ langs.BUY }}"/></td>
+                            </tr>
+                        {% endif %}
+                        <tr>
+                          <td>
+                            {{ langs.NEW_PROFESSION }}:&nbsp;
+                            <select name="profession">
+                                <option value="0">{{ langs.SELECT_TAG_CHOOSE }}</option>
+                                {% if userData.getCharType != 1 %}<option value="1">{{ langs.CARJACKER }}</option>{% endif %}
+                                {% if userData.getCharType != 2 %}<option value="2">{{ langs.PRISON_BREAKER }}</option>{% endif %}
+                                {% if userData.getCharType != 3 %}<option value="3">{{ langs.THIEF }}</option>{% endif %}
+                                {% if userData.getCharType != 4 %}<option value="4">{{ langs.PIMP }}</option>{% endif %}
+                                {% if userData.getCharType != 5 %}<option value="5">{{ langs.BANKER }}</option>{% endif %}
+                                {% if userData.getCharType != 6 %}<option value="6">{{ langs.SMUGGLER }}</option>{% endif %}
+                            </select>
+                          </td>
+                          <td class="center">{{ crIcon|raw }} 50</td>
+                          <td class="center"><input type="submit" name="new-profession" value="{{ langs.BUY }}"/></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                {{ langs.CHANGE_NAME }}: <input type="text" name="nickname" placeholder="{{ langs.NEW_NAME }}">
+                            </td>
+                            <td class="center">{{ crIcon|raw }} 100</td>
+                            <td class="center"><input type="submit" name="new-name" value="{{ langs.BUY }}"/></td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                          {{ langs.NEW_USERSTYLE }}:&nbsp;
+                           <select id="styleSelector" name="style">
+                                <option value="0">{{ langs.SELECT_STYLE }}</option>
+                                {% if userData.getUserStyle != 1 %}<option value="1"> Style 1</option> {% endif %}
+                                {% if userData.getUserStyle != 2 %}<option value="2"> Style 2</option> {% endif %}
+                                {% if userData.getUserStyle != 3 %}<option value="3"> Style 3</option> {% endif %}
+                                {% if userData.getUserStyle != 4 %}<option value="4"> Style 4</option> {% endif %}
+                                {% if userData.getUserStyle != 5 %}<option value="5"> Style 5</option> {% endif %}
+                                {% if userData.getUserStyle != 6 %}<option value="6"> Style 6</option> {% endif %}
+                                {% if userData.getUserStyle != 7 %}<option value="7"> Style 7</option> {% endif %}
+                                {% if userData.getUserStyle != 8 %}<option value="8"> Style 8</option> {% endif %}
+                                {% if userData.getUserStyle != 9 %}<option value="9"> Style 9</option> {% endif %}
+                                {% if userData.getUserStyle != 10 %}<option value="10"> Style 10</option> {% endif %}
+                                {% if userData.getUserStyle != 11 %}<option value="11"> Style 11</option> {% endif %}
+                            </select>
+                          </td>
+                          <td class="center">{{ crIcon|raw }} 100 </td>
+                          <td class="center"><input type="submit" name="username-style" value="{{ langs.BUY }}" /></td>
+                                                    <td>
+                          <div id="userStyle" class="username-style-{{userData.getUserStyle}}"> {{ userData.getUsername }}</div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% block javascripts %}
+<script>
+document.getElementById('styleSelector').addEventListener('change', function() {
+  // Get the selected value
+  var selectedStyle = 'username-style-'+this.value
+
+  // Get the element with ID 'userStyle'
+  var userStyleElement = document.getElementById('userStyle')
+
+  // Remove all existing classes
+  userStyleElement.className = ''
+
+  // Add the selected class
+  userStyleElement.classList.add(selectedStyle)
+})
+</script>
+{% endblock javascripts %}

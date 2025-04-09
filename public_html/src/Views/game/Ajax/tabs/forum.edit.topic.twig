@@ -1,0 +1,43 @@
+{% extends "/app/Resources/Views/modal.twig" %}
+
+{% block css %}
+    ::-webkit-input-placeholder {color:#ccc;}
+    :-moz-placeholder {color:#ccc;opacity:  1;}
+    ::-moz-placeholder {color:#ccc;opacity:  1;}
+    :-ms-input-placeholder {color:#ccc;}
+{% endblock css %}
+
+{% block title %}
+    <h4 class="modal-title">{{ langs.EDIT_TOPIC }}</h4>
+{% endblock title %}
+
+{% block content %}
+    <div id="ajaxLoader"></div>
+    <div id="forumEditResponse"></div>
+    <form id="forum-edit" class="ajaxForm" action="{{ routing.getAjaxRouteByRouteName('forum-edit-topic') }}" method="POST" data-response="#forumEditResponse">
+        <input type="hidden" name="topicID" value="{{ topicID }}"/>
+        <input type="text" name="topic-title" placeholder="Topic {{ langs.TITLE|lower }}" value="{{ topicTitle }}" maxlength="100"/><br /><br />
+        <textarea id="replyField" name="edited-message" rows="10" cols="80">{{ topicContent|htmlEsc|raw }}</textarea>
+        <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+        <br class="clear"/>
+        <input type="submit" name="submit-editted-topic" class="execbutton small" value="{{ langs.EDIT_TOPIC }}"/>
+    </form>
+{% endblock content %}
+
+{% block js %}
+    $(document).ready(function(){
+        if($('#modal').hasClass('in') == false) {
+            $("#triggerModal").click();
+            $("#triggerModal").remove();
+            CKEDITOR.replace('replyField', {
+                autoGrow_maxHeight: 650,
+                removePlugins: 'resize',
+                enterMode: CKEDITOR.ENTER_BR,
+                shiftEnterMode: CKEDITOR.ENTER_P
+            });
+        }
+        $('#modal').on('hidden.bs.modal', function () {
+            $("#openTab").empty();
+        });
+    });
+{% endblock js %}

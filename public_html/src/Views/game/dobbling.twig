@@ -1,0 +1,34 @@
+{% extends "/app/Resources/Views/gamebase.twig" %}
+
+{% block stylesheets %}
+    <style type="text/css">
+        input.dobbling-field {display:inline-block;max-width:60px;margin:0;}
+        #playDobblingResponse .alert {margin-bottom: 0;}
+    </style>
+{% endblock stylesheets %}
+
+{% block content %}
+<div style="max-width: 520px;margin: 0 auto">
+    <div class="top">
+        {{ langs.DOBBLING }}
+    </div>
+    <div class="content-container cf">
+        <p class="center"><img src="{{ staticRoot }}/foto/web/public/images/dobbling.jpg" alt="{{ langs.DOBBLING }}" /></p>
+        <div id="playDobblingResponse"></div>
+        <form class="ajaxForm center" method="POST" action="{{ routing.getAjaxRouteByRouteName('play-dobbling') }}" data-response="#playDobblingResponse">
+            <input type="hidden" name="security-token" value="{{ securityToken }}"/>
+            {{ langs.STAKE }}:&nbsp;<input type="number" class="dobbling-field" name="stake" placeholder="{{ langs.STAKE }}"/>&nbsp;<input type='submit' name='play-dobbling' value='{{ langs.PLAY }}' />
+        </form>
+        <p class="center">{{ langs.DOBBLING_INFO|raw }}</p>
+        <div id="buyPossessResponse"></div>
+        <div class="center">
+            {% include "/src/Views/game/.inc.possess.twig" with {article: langs.DEZETHIS} %}
+            <br class="clear"/>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascripts %}
+<script type="text/javascript" src="{{ staticRoot }}/web/public/js/ajax-form.js"></script>
+{% endblock javascripts %}

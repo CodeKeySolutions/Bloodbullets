@@ -1,0 +1,11 @@
+{% extends "/app/Resources/Views/modal.twig" %}
+
+{% block size %}modal-xs{% endblock size %}
+
+{% block title %}
+    <h4 class="modal-title">{{ langs.HELPSYSTEM_FOR }} {{ prevPagename }}</h4>
+{% endblock title %}
+
+{% block content %}
+    {{ helpContent|raw }}
+{% endblock content %}
