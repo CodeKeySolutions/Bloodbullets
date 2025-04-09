@@ -27,10 +27,10 @@ Can be downloaded from: https://bloodbullets.com/public_html.zip
 These include all images excluded in gitignore and 1 custom ckeditor(game) package.
 
 ## Donate
-Any spare crypto sent my way is greatly appreciated!
-ETH: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6
-BTC: bc1qyhuvnj3djg5khganc6ppr3l78s6da57ghpx054
-LTC: LhvSYfdoBduyn6P1aafqnwNpwKyxB9YEUZ
-XRP: rnXTEwfyNEnVmiwU1Ea6rBxznGraYfxL1G
-DOGE: D5o9JJBDdP1GENkApH3pZo7Nxhm8HPdCqx
-PEPE: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6
+Any spare crypto sent my way is greatly appreciated!<br / >
+ETH: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6<br / >
+BTC: bc1qyhuvnj3djg5khganc6ppr3l78s6da57ghpx054<br / >
+LTC: LhvSYfdoBduyn6P1aafqnwNpwKyxB9YEUZ<br / >
+XRP: rnXTEwfyNEnVmiwU1Ea6rBxznGraYfxL1G<br / >
+DOGE: D5o9JJBDdP1GENkApH3pZo7Nxhm8HPdCqx<br / >
+PEPE: 0x0F2806Ac9f0271098648c81f2Ef9a1675000a4f6<br / >
