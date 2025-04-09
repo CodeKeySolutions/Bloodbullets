@@ -33,6 +33,5 @@
 
 
 iv.txt
-emails.txt
 key.txt
 /app/Resources/userSalts/*.txt
