@@ -1,7 +1,7 @@
 <?PHP
 
-// Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-// Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+// Mafiasource/Bloodbullets online mafia RPG, this software is inspired by Crimeclub.
+// Copyright © 2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the “Software”),
@@ -65,20 +65,20 @@ if(date('H') >= 6 && date('H') <= 24)
             $value = $security->randInt(1, 7) / 100;
         else
             $value = $security->randInt(1, 4) / 100;
-        
+
         $upDown = $security->randInt(1, 3);
         if($upDown === 1) // Up we go
         {
             if($b['last_price'] + $value > $b['high_price'])
                 $con->setData("UPDATE `business` SET `high_price`=`last_price`+ :val WHERE `id`= :id", array(':val' => $value, ':id' => $b['id']));
-            
+
             $con->setData("UPDATE `business` SET `last_price`=`last_price`+ :val WHERE `id`= :id AND `last_price`<'500'", array(':val' => $value, ':id' => $b['id']));
         }
         elseif($upDown === 3) // Down we fall
         {
             if($b['last_price'] - $value < $b['low_price'])
                 $con->setData("UPDATE `business` SET `low_price`=`last_price`- :val WHERE `id`= :id", array(':val' => $value, ':id' => $b['id']));
-            
+
             $con->setData("UPDATE `business` SET `last_price`=`last_price`- :val WHERE `id`= :id AND `last_price`>'10'", array(':val' => $value, ':id' => $b['id']));
         }
     }
@@ -107,7 +107,7 @@ foreach($crimes AS $oc)
     {
         $chance2 = $security->randInt(0, 100);
         if($chance2 > 70) $success = true;
-        
+
         if($success === false)
         {
             $chanceHeat = $security->randInt(0, 100);
@@ -127,7 +127,7 @@ foreach($crimes AS $oc)
     }
     else
         $success = true;
-    
+
     if($success === true || $hurt === true || $heat === true)
     {
         $hurtPercent = $bulletsSpend = array(1 => false, false, false, false);
@@ -174,7 +174,7 @@ foreach($crimes AS $oc)
                 1 => $security->randInt($bulletsFrom, $bulletsTo), $security->randInt($bulletsFrom, $bulletsTo), $security->randInt($bulletsFrom, $bulletsTo),
                 $security->randInt($bulletsFrom, $bulletsTo)
             );
-            
+
             $failedChance = $security->randInt(1, 100);
             if($failedChance > $failChance)
                 $failed = true;
@@ -188,7 +188,7 @@ foreach($crimes AS $oc)
                 // Send notification
                 $params = "hurtPercent=".$hurtPercent[$i]."&bullets=".$bulletsSpend[$i];
                 $crimesStatics->sendNotification($m['id'], 'ORGANIZED_CRIME_3_FAILED_AND_HURT', $params);
-                
+
                 $i++;
             }
         }
@@ -208,7 +208,7 @@ foreach($crimes AS $oc)
                     // Send notification
                     $params = "stolenMoney=".number_format($stolenMoney, 0, '', ',')."&rankpoints=".$rpCollected[$i]."&hurtPercent=".$hurtPercent[$i]."&bullets=".$bulletsSpend[$i];
                     $crimesStatics->sendNotification($m['id'], 'ORGANIZED_CRIME_3_SUCCESS_BUT_HURT', $params);
-                    
+
                     $i++;
                 }
             }
@@ -220,7 +220,7 @@ foreach($crimes AS $oc)
                     // Send notification
                     $params = "stolenMoney=".number_format($stolenMoney, 0, '', ',')."&rankpoints=".$rpCollected[$i]."&bullets=".$bulletsSpend[$i];
                     $crimesStatics->sendNotification($m['id'], 'ORGANIZED_CRIME_3_SUCCESS_BUT_HEAT', $params);
-                    
+
                     $i++;
                 }
                 foreach($hurtPercent AS $k => $v) $hurtPercent[$k] = false; // Only bullets fired not hurt whatever got set, reset
@@ -233,7 +233,7 @@ foreach($crimes AS $oc)
                     // Send notification
                     $params = "stolenMoney=".number_format($stolenMoney, 0, '', ',')."&rankpoints=".$rpCollected[$i];
                     $crimesStatics->sendNotification($m['id'], 'ORGANIZED_CRIME_3_SUCCESS', $params);
-                    
+
                     $i++;
                 }
             }
@@ -247,7 +247,7 @@ foreach($crimes AS $oc)
                 if($m['crimesLv'] < $newLvlData[$m['id']]['levelAfter'])
                 {
                     $mTierProgress = $missionStatics->getMissionTierAndProgressByMission($mission, $m['id']);
-                    
+
                     $missionTier = $missionStatics->missionTiers[$mission];
                     $todo = $missionTier['todo'][$mTierProgress['t']];
                     $bank = $missionTier['prizeMoney'][$mTierProgress['t']];
@@ -255,7 +255,7 @@ foreach($crimes AS $oc)
                     if($mTierProgress['p'] + 1 >= $todo && $todo > $mTierProgress['p'])
                     {
                         $missionStatics->payoutMissionPrize($bank, $hp, $m['id']);
-                        
+
                         $params = "mission=".$missionStatics->missions[$mission]."&bank=".number_format($bank, 0, '', ',')."&hp=".number_format($hp, 0, '', ',');
                         $crimesStatics->sendNotification($m['id'], 'USER_ACHIEVED_MISSION', $params);
                     }
@@ -264,7 +264,7 @@ foreach($crimes AS $oc)
                     $m['id'], $stolenMoney, $rpCollected[$i], $newLvlData[$m['id']]['levelAfter'], $newLvlData[$m['id']]['xpAfter'], $oc['waitingTimeCompletion'], $hurtPercent[$i],
                     $bulletsSpend[$i]
                 );
-                
+
                 $i++;
             }
         }
@@ -286,7 +286,7 @@ foreach($crimes AS $oc)
             $inPrison = array($members[0], $members[1], $members[2]);
         else
             $inPrison = array($members[0], $members[1], $members[2], $members[3]);
-        
+
         $arrestedList = $othersArrestedList = $arrestedUsersArr = array();
         foreach($members AS $m)
         {

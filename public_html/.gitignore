@@ -14,7 +14,7 @@
 !vendor/SimpleImage.php
 !vendor/SessionManager.php
 
-# Web assets (Can de downloaded from mafiasource.nl)
+# Web assets (Can de downloaded from dev.bloodbullets.com/public_html.zip)
 /web/downloads/*
 /web/vendor/*
 /web/public/cache/*

@@ -1,7 +1,7 @@
 <?PHP
 
-// Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-// Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+// Mafiasource/Bloodbullets online mafia RPG, this software is inspired by Crimeclub.
+// Copyright © 2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the “Software”),
@@ -62,7 +62,7 @@ else
 }
 $saveFile = __DIR__ . '/backup/' . date("d.m.Y_H_i_s") . '_' . $backupType . '_' . $extname;
 $backupType = $extname = null;
-$return = "";	
+$return = "";
 if($backupTables == '*')
 {
 	$backupTables = array();
@@ -82,12 +82,12 @@ else
 foreach($backupTables as $table)
 {
 	$result = $con->getData("SELECT * FROM " . $table);
-    
+
 	$return .= "DROP TABLE IF EXISTS `" . $table . "`;";
-    
+
 	$row2 = $con->getDataSR("SHOW CREATE TABLE " . $table);
 	$return .= "\n\n" . $row2[1] . ";\n\n";
-    
+
     foreach($result AS $row)
     {
         $num_fields = count($row) / 2; // All fields counted double once integer keys, other textual field keys.

@@ -1,7 +1,7 @@
 <?PHP
 
-// Mafiasource online mafia RPG, this software is inspired by Crimeclub.
-// Copyright © 2016 Michael Carrein, 2006 Crimeclub.nl
+// Mafiasource/Bloodbullets online mafia RPG, this software is inspired by Crimeclub.
+// Copyright © 2016 Michael Carrein, Jordan Daubinet, 2006 Crimeclub.nl
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the “Software”),
@@ -73,7 +73,7 @@ if(is_array($rows) && count($rows))
             $scan = glob(rtrim($str, '/').'/*');
             foreach($scan as $index=>$path)
                 deleteAll($path);
-            
+
             return @rmdir($str);
         }
     }
@@ -116,15 +116,15 @@ if(is_array($rows) && count($rows))
         $userGarages = $con->getData("SELECT `id` FROM `user_garage` WHERE `userID`= :uid", array(':uid' => $row['id']));
         foreach($userGarages AS $g)
             $con->setData("DELETE FROM `garage` WHERE `userGarageID`= :ugid", array(':ugid' => $g['id']));
-        
+
         $con->setData("DELETE FROM `user_garage` WHERE `userID`= :uid", array(':uid' => $row['id']));
-        
+
         // Reset user familyID for family members of inactive family boss
         $famBoss = $con->getDataSR("SELECT `bossUID` FROM `family` WHERE `id`= :fid", array(':fid' => $row['familyID']));
         $famBoss = isset($famBoss['bossUID']) ? $famBoss['bossUID'] : null;
         if(isset($famBoss) && $famBoss == $row['id'])
             $con->setData("UPDATE `user` SET `familyID`='0' WHERE `familyID`= :fid", array(':fid' => $row['familyID']));
-        
+
         // Remove disk drive files..
         // Remove email in masterCrypts emails file by id | Copy paste part of UserDAO->createUser() && ->changeEmail() TO DO
         $cryptFile = GAME_DOC_ROOT . '/app/Resources/masterCrypts/user/emails.txt';
@@ -132,36 +132,36 @@ if(is_array($rows) && count($rows))
         $cryptsArr = unserialize($serializedCrypts);
         $crypts = is_array($cryptsArr) && !empty($cryptsArr) ? $cryptsArr : array();
         unset($crypts[$row['id']]);
-        
+
         if(file_exists($cryptFile)) unlink($cryptFile);
         $ourFileHandle = fopen($cryptFile, 'w');
         fwrite($ourFileHandle, serialize($crypts));
         fclose($ourFileHandle);
         chmod($cryptFile, 0600);
-        
+
         // Remove userCrypts
         deleteAll(GAME_DOC_ROOT . '/app/Resources/userCrypts/' . $row['id']);
-        
+
         // Remove password salt
         $saltFile = GAME_DOC_ROOT . '/app/Resources/userSalts/' . $row['id'] . '.txt';
         if(file_exists($saltFile)) unlink($saltFile);
-        
+
         // Remove PrivateID in salt file by id | Copy paste part of UserDAO->deactivatePrivateID() TO DO
         $saltFile = GAME_DOC_ROOT . '/app/Resources/privateSalts/salts.txt';
         $serializedSalts = file_get_contents($saltFile);
         $saltsArr = unserialize($serializedSalts);
         $salts = is_array($saltsArr) && !empty($saltsArr) ? $saltsArr : array();
         unset($salts[$row['id']]);
-        
+
         if(file_exists($saltFile)) unlink($saltFile);
         $ourFileHandle = fopen($saltFile, 'w');
         fwrite($ourFileHandle, serialize($salts));
         fclose($ourFileHandle);
         chmod($saltFile, 0600);
-            
+
         // Remove avatars
         deleteAll($avatarsDir = GAME_DOC_ROOT . '/web/public/images/users/' . $row['id']);
-        
+
         // Targeted removal loop finish, add userID to $ids to globally remove underneath
         $ids[] = (int)$row['id'];
     }
