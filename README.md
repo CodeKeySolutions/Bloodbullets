@@ -24,16 +24,19 @@ Contents of the web server home directory (one directory above public_html) wher
 - public_html/ the actual web app root directory.
 
 ## Missing resources
-Can be downloaded from: https://bloodbullets.com/public_html.zip
+Can be downloaded from: https://dev.bloodbullets.com/public_html.zip
 These include all images excluded in gitignore and 1 custom ckeditor(game) package.
 
 ## Credits
 [MDEV](https://github.com/Mafiasource)
+
 To all members of the[Bloodbullet.com](https://bloodbullets.com) Community.
 
 ## External Links
 [Discord](https://discord.gg/VBkGzG8AS9)
+
 [Game](https://bloodbullets.com)
+
 [Resources](https://dev.bloodbullets.com/public_html.zip)
 
 ## Donate
