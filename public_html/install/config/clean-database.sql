@@ -1824,6 +1824,7 @@ CREATE TABLE `message` (
   `read` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'type=yesno',
   `inSenderInbox` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'type=yesno',
   `inReceiverInbox` tinyint(1) NOT NULL DEFAULT 1 COMMENT 'type=yesno',
+  `reports` int(3) NOT NULL DEFAULT 0 COMMENT 'type=disabled',
   `position` bigint(20) DEFAULT 0,
   `active` tinyint(1) NOT NULL DEFAULT 1,
   `deleted` tinyint(1) NOT NULL DEFAULT 0
