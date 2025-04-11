@@ -115,7 +115,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <ul>
                         <li><a href="{{ routing.getRouteByRouteName('poll') }}"><span{% if unvotedPoll %} class="donator"{% endif %}>- Poll</span></a></li>
                         <li><a href="{{ routing.getRouteByRouteName('game-forum') }}">- Forum</a></li>
-                        {# <li><a href="https://discord.gg/4kFA5eh" target="_blank">- Discord</a></li> #}
+                        <li><a href="https://discord.gg/{{settings.discordInvite}}" target="_blank">- Discord</a></li>
                         <li><a href="{{ routing.getRouteByRouteName('shoutbox') }}"><span{% if userData.getLastReadShoutboxID != lastShoutboxID and lastShoutboxID != 0 %} class="donator"{% endif %}>- Shoutbox</span></a></li>
                     </ul>
                 </li>
